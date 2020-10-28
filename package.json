@@ -1,0 +1,26 @@
+{
+  "name": "Baitap1_PhanSangVo_17083481",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "create-db": "cd dynamodb && node createTable.js && cd ..",
+    "delete-db": "cd dynamodb && node deleteCarsTable.js && cd ..",
+    "load-data": "cd dynamodb && node loadData.js && cd ..",
+    "read-data": "cd dynamodb && node readData.js && cd .."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.775.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "sharp": "^0.26.2",
+    "uuid": "^8.3.1"
+  }
+}

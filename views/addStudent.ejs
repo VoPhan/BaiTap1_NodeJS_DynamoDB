@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <%- include("header.ejs") %>
+    <div class="jumbotron">
+        <h1>Thêm Sinh Viên</h1>
+    </div>
+    <div class="container">
+        <form method="post">
+            <div class="form-group">
+                <label for="ma_sinhvien">Mã Sinh Viên</label>
+                <input required="required" type="text" name="ma_sinhvien" id="ma_sinhvien" class="form-control" placeholder="Mã sinh viên" aria-describedby="helpId">
+            </div>
+            <div class="form-group">
+                <label for="ten_sinhvien">Họ và tên</label>
+                <input required="required" type="text" name="ten_sinhvien" id="ten_sinhvien" class="form-control" placeholder="Họ và tên" aria-describedby="helpId">
+            </div>
+            <div class="form-group">
+                <label for="namsinh">Năm sinh</label>
+                <input required="required" type="text" name="namsinh" id="namsinh" class="form-control" placeholder="Năm sinh" aria-describedby="helpId">
+            </div>
+            <div class="form-group">
+                <label for="ma_lop">Mã lớp</label>
+                <input required="required" type="text" name="ma_lop" id="ma_lop" class="form-control" placeholder="Mã lớp" aria-describedby="helpId">
+            </div>
+            <div class="form-group">
+                <label for="avatar">Avatar</label>
+                <input required="required" type="file" name="avatar" id="avatar" class="form-control" placeholder="Avatar" aria-describedby="helpId">
+            </div>
+            <button type="submit" class="btn btn-outline-success">Thêm</button>
+        </form>
+    </div>
+</div>
+
+</body>
+
+</html>

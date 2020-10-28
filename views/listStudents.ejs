@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $(document).on("click", ".open-EditStudentDialog", function () {
+            $(".modal-body #id").val( $(this).data('id') );
+            $(".modal-body #idhidden").val( $(this).data('id') );
+            $(".modal-body #ma_sinhvien").val( $(this).data('ma_sinhvien') );
+            $(".modal-body #ten_sinhvien").val( $(this).data('ten_sinhvien') );
+            $(".modal-body #namsinh").val( $(this).data('namsinh') );
+            $(".modal-body #ma_lop").val( $(this).data('ma_lop') );
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <%- include("header.ejs") %>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Danh sách Sinh viên</h1>
+            </div>
+            <div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Avatar</th>
+                            <th>ID</th>
+                            <th>Mã Sinh Viên</th>
+                            <th>Tên Sinh Viên</th>
+                            <th>Năm Sinh</th>
+                            <th>Mã Lớp</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% students.forEach((item) => { %>
+                            <tr>
+                                <td><img style="width: 50px; height: 50px" src="<%- item.avatar  %>"></td>
+                                <td><%- item.id %></td>
+                                <td><%- item.ma_sinhvien %></td>
+                                <td><%- item.ten_sinhvien %></td>
+                                <td><%- item.namsinh %></td>
+                                <td><%- item.ma_lop %></td>
+                                <!--<td><%- item.avatar  %></td>-->
+                                <td>
+                                    <a class="btn btn-outline-danger" href="/student/<%- item.id %>/<%- item.avatar.toString().split("/")[3]  %>">Xóa</a>
+                                    <a class="btn btn-outline-success open-EditStudentDialog"
+                                       data-id="<%- item.id %>"
+                                       data-ma_sinhvien="<%- item.ma_sinhvien %>"
+                                       data-ten_sinhvien="<%- item.ten_sinhvien %>"
+                                       data-namsinh="<%- item.namsinh %>"
+                                       data-ma_lop="<%- item.ma_lop %>"
+                                       data-avatar="<%- item.avatar  %>"
+                                       data-toggle="modal" data-target="#editModal">Sửa</a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sửa sinh viên</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="/student" id="formEdit">
+                    <div class="form-group" hidden="hidden">
+                        <label for="id">ID</label>
+                        <input type="text" name="id" id="id" class="form-control" placeholder="ID" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <label for="ma_sinhvien">Mã Sinh Viên</label>
+                        <input required="required" type="text" name="ma_sinhvien" id="ma_sinhvien" class="form-control" placeholder="Mã sinh viên" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <label for="ten_sinhvien">Họ và tên</label>
+                        <input required="required" type="text" name="ten_sinhvien" id="ten_sinhvien" class="form-control" placeholder="Họ và tên" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <label for="namsinh">Năm sinh</label>
+                        <input required="required" type="text" name="namsinh" id="namsinh" class="form-control" placeholder="Năm sinh" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <label for="ma_lop">Mã lớp</label>
+                        <input required="required" type="text" name="ma_lop" id="ma_lop" class="form-control" placeholder="Mã lớp" aria-describedby="helpId">
+                    </div>
+                    <div class="form-group">
+                        <label for="avatar">Avatar</label>
+                        <input type="file" name="avatar" id="avatar" class="form-control" aria-describedby="helpId">
+                    </div>
+                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Đóng</button>
+                    <button type="submit" class="btn btn-outline-success">Lưu</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
